@@ -1,0 +1,22 @@
+{% extends 'djfiles/index.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<h4 align="center">Импорт данных</h4>
+<br><br>
+{% if request.user.is_authenticated %}
+    <p>Чтобы загрузить новости необходимо использовать .csv файл, в котором два поля разделённых запятыми, например:</p>
+    <i>Заголовок новости, Текст новости который лучше писать без запятых либо экранировать их</i>
+    <br><br><br>
+    <form enctype="multipart/form-data" method="post" action="{% url 'load_file' %}" align="center">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <input type="submit" value="Загрузить">
+    </form>
+    <br><br><br>
+{% else %}
+    <h6>Вы не авторизованы, авторизуйтесь чтобы иметь возможность загрузки файлов</h6>
+{% endif %}
+
+{% endblock content %}

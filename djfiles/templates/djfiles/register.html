@@ -1,0 +1,57 @@
+{% extends 'djfiles/index.html' %}
+{% block content %}
+<br><br><br>
+    <h4 align="center">Страница Регистрации</h4>
+
+
+<!--====================  login area ====================-->
+    <div class="login-area space__bottom--r120">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12 space__top__md--40 space__top__lm--40">
+                    <form enctype="multipart/form-data" method="post" action="{% url 'register' %}">
+                        {% csrf_token %}
+                        <div class="login-form">
+                            <h4 class="login-title">Регистрация</h4>
+                            <div class="row">
+                                <div class="col-md-6 col-12 space__bottom--20">
+                                    {{ form.username }}
+                                </div>
+                                <div class="col-md-6 col-12 space__bottom--20">
+                                    {{ form.first_name }}
+                                </div>
+                                <div class="col-md-6 col-12 space__bottom--20">
+                                    {{ form.second_name }}
+                                </div>
+                                <div class="col-md-6 space__bottom--20">
+                                    {{ form.tel }}
+                                </div>
+                                <div class="col-md-6 space__bottom--20">
+                                    {{ form.town}}
+                                </div>
+                                <div class="col-md-12 space__bottom--20">
+                                    <label>Загрузите Ваше фото</label>
+                                    {{ form.avatar }}
+                                </div>
+                                 <div class="col-md-12 space__bottom--20">
+                                     {{ form.about_me }}
+                                 </div>
+                                <div class="col-md-6 space__bottom--20">
+                                    {{ form.password1 }}
+                                </div>
+                                <div class="col-md-6 space__bottom--20">
+                                    {{ form.password2 }}
+                                </div>
+                                <div class="col-12">
+                                     <input type="submit" value="Отправить"></td>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--====================  End of login area  ====================-->
+
+{% endblock content %}

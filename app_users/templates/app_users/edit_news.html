@@ -1,0 +1,53 @@
+{% extends 'djfiles/index.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<h4 align="center">Редактировать новость</h4>
+{% if request.user.is_authenticated %}
+
+    <!--====================  login area ====================-->
+    <div class="login-area space__bottom--r120">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 space__top__md--40 space__top__lm--40">
+                    <form method="post" action="{% url 'edit_news' pk %}">
+                        {% csrf_token %}
+                        <div class="login-form">
+                            <div class="row">
+                                <div class="col-md-4 col-4 space__bottom--20">
+                                    <label>Заголовок новости</label>
+                                    {{ news_form.title}}
+                                </div>
+                                <div class="col-md-12 col-12 space__bottom--20">
+                                    <label>Описание</label>
+                                    {{ news_form.description }}
+                                </div>
+                                <div class="col-md-12 col-12 space__bottom--20">
+                                    <label>Активен</label>
+                                    {{ news_form.status }}
+                                </div>
+                                <div class="col-12">
+                                    <input type="submit" value="Изменить"></td>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    {% if object %}
+                    <form method="POST" action="delete_picture/">
+                        {% csrf_token %}
+                        {% for o in object.all %}
+                            <img src="{{ o.image.url }}"  alt="">
+                            <input type="checkbox" name="checks" value="{{ o.id }}">
+                        {% endfor %}
+                        <input type="submit" value="Удалить">
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--====================  End of login area  ====================-->
+{% else %}
+    <h6>Вы не авторизованы, авторизуйтесь чтобы изменить новость</h6>
+{% endif %}
+{% endblock content %}

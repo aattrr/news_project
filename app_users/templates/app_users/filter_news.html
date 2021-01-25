@@ -1,0 +1,29 @@
+{% extends 'djfiles/index.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<h4 align="center">Новости</h4>
+
+<div class="row">
+    <div class="col-2">
+            <p> Все новости с тегом - {{select_tag|upper}} </p>
+    </div>
+    <div class="col-10">
+       {% for i in filtered_news %}
+        <div class="card">
+            <div class="card-body">
+                <h4>
+                    <a href="{{ i.get_absolute_url }}"> {{ i.title }} </a>
+                </h4>
+                <p> {{ i.description }} </p>
+            </div>
+        </div>
+        {% empty %}
+            <h3> В данный момент новости отсутсвуют </h3>
+        {% endfor %}
+        <form action="add_news">
+            <button class="btn-primary btn-block btn-lg">Добавить новость</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

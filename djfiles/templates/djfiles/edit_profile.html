@@ -1,0 +1,57 @@
+{% extends 'djfiles/index.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+{% if request.user.is_authenticated %}
+<h4 align="center">Изменить персональные данные</h4>
+<br><br>
+
+
+    <!--====================  login area ====================-->
+    <div class="login-area space__bottom--r120">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12 space__top__md--40 space__top__lm--40">
+                    <form method="post" action="{% url 'edit_profile' %}">
+                        {% csrf_token %}
+                        <div class="login-form">
+                            <div class="row">
+                                <div class="col-md-6 col-12 space__bottom--20">
+                                    <label>Имя пользователя</label>
+                                    {{ form.user}}
+                                </div>
+                                <div class="col-md-6 col-12 space__bottom--20">
+                                    <label>Имя</label>
+                                    {{ form.first_name }}
+                                </div>
+                                <div class="col-md-6 col-12 space__bottom--20">
+                                    <label>Фамилия</label>
+                                    {{ form.second_name }}
+                                </div>
+                                <div class="col-md-6 space__bottom--20">
+                                    <label>Телефон</label>
+                                    {{ form.tel }}
+                                </div>
+                                <div class="col-md-6 space__bottom--20">
+                                    <label>Город</label>
+                                    {{ form.town}}
+                                </div>
+                                 <div class="col-md-12 space__bottom--20">
+                                    <label>Обо мне</label>
+                                    {{ form.about_me }}
+                                 </div>
+                                <div class="col-12">
+                                     <input type="submit" value="Изменить"></td>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--====================  End of login area  ====================-->
+{% else %}
+    <h6>Вы не авторизованы, авторизуйтесь чтобы посмотреть информацию о пользователе</h6>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends 'djfiles/index.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<h4 align="center">Добавить комментарий</h4>
+<br><br>
+    <form action="" method="post">
+        {% csrf_token %}
+            <div>
+                {{ form.text.errors }}
+                <label for="text"> Комментарий:</label>
+                {{ form.text }}
+            </div>
+        <button type="submit">Опубликовать</button>
+    </form>
+
+{% endblock content %}

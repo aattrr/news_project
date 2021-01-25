@@ -1,0 +1,79 @@
+{% extends 'djfiles/index.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<h4 align="center">Описание новости</h4>
+<br><br>
+    <!--====================  service details ====================-->
+    <div class="service-section space__bottom--r120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-12 order-1 order-lg-2">
+                    <div class="service-details">
+                        <div class="service-gallery">
+                            <div class="service-gallery__wrapper">
+                                 {% for i in picture_news %}
+                                    <div class="service-gallery__single-slide">
+                                        <div class="item">
+                                            <img src="{{ i.image.url }}" class="img-fluid" alt="">
+                                        </div>
+                                    </div>
+                                 {% endfor %}
+                            </div>
+                        </div>
+                        <div class="content space__top--30">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="space__bottom--15">{{ object.title }}</h3>
+                                    <p>{{ object.description }}</p>
+                                    <p align="right">
+                                        <a href="{% url  'edit_news' object.id %}" class="default-btn"> Редактировать </a>
+                                    </p>
+                                    <i>Опубликовал: {{ object.user }}</i><br>
+                                    <i>Дата создания: {{ object.create_at}}</i><br>
+                                    <i>Теги:
+                                        <i>
+                                            {% for tag in object.metatag.all %}
+                                                {{ tag.descriptor }}
+                                            {% endfor %}
+                                        </i>
+                                    </i>
+
+                                    <hr>
+                                    {% for i in comment_list %}
+                                        {% if i.user == None %}
+                                            <div class="single-testimonial text-center">
+                                                <div class="single-testimonial__rating space__bottom--10">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <i> {{ i.text }} </i>
+                                            <h5 align="right" class="single-testimonial__author">Анонимный пользователь</h5>
+                                        {% else %}
+                                            <div class="single-testimonial text-center">
+                                                <div class="single-testimonial__rating space__bottom--10">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <li><i> {{ i.text }} </i></li>
+                                            <h5 align="right" class="single-testimonial__author">{{ i.user}}</h5>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    <hr>
+                                    <a href="{% url 'add_comment' object.id %}" class="default-btn">Добавить комментарий</a>
+                                    <a href="/news" class="default-btn" >Назад</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

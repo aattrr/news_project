@@ -1,0 +1,33 @@
+{% extends 'djfiles/index.html' %}
+{% load static %}
+{% block content %}
+<br><br><br><br>
+<h4 align="center">Список новостей</h4>
+<div class="service-section space__bottom--r120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="service-item-wrapper space__bottom--m40">
+                        <div class="service-grid-item">
+                            <div class="service-grid-item__content">
+                                {% for i in object_list %}
+                                    <h3 class="title">
+                                        <a href="{{ i.get_absolute_url }}">{{ i.title }}</a>
+                                    </h3>
+                                    <p class="subtitle">{{ i.description|truncatewords:100 }}</p>
+                                    <a href="{{ i.get_absolute_url }}" class="see-more-link">Читать далее...</a>
+                                    <i><p align="right" > {{ i.user }} </p></i>
+                                    <hr>
+                                {% empty %}
+                                    <h3> В данный момент новости отсутсвуют </h3>
+                                {% endfor %}
+                                <a href="{% url "add_news" %}" class="default-btn">Добавить новость</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

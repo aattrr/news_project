@@ -1,0 +1,29 @@
+{% extends 'djfiles/index.html' %}
+{% load static %}
+{% block content %}
+
+<br><br><br>
+{% if request.user.is_authenticated %}
+    <h4 align="center">Персональная информация: {{ request.user.username.upper }}</h4>
+    <br><br>
+        <img src="{{ request.user.profile.avatar.url }}" alt=""></li><br><br>
+
+        <ul>
+            <li class="list-group-item list-group-item-action list-group-item-warning">Пользователь: <b>{{ request.user.username }}</b></li>
+            <li class="list-group-item list-group-item-action list-group-item-info">Имя: <b>{{ request.user.profile.first_name }}</b></li>
+            <li class="list-group-item list-group-item-action list-group-item-warning">Фамилия: <b>{{ request.user.profile.second_name }}</b></li>
+            <li class="list-group-item list-group-item-action list-group-item-info">Обо мне: <b>{{ request.user.profile.about_me }}</b></li>
+            <li class="list-group-item list-group-item-action list-group-item-warning">Город: <b>{{ request.user.profile.town }}</b></li>
+            <li class="list-group-item list-group-item-action list-group-item-info">Телефон: <b>{{ request.user.profile.tel }}</b></li>
+            <li class="list-group-item list-group-item-action list-group-item-warning">Колличество опубликованных новостей: <b>{{ count_news }}</b></li>
+        </ul>
+        <br>
+        <p align="right">
+        <a href="{% url 'edit_profile' %}"  align="right" class="default-btn" >Редактировать профиль</a>
+        </p>
+{% else %}
+    <h6>Вы не авторизованы, авторизуйтесь чтобы посмотреть информацию о пользователе</h6>
+{% endif %}
+    <br><br><br><br><br><br>
+
+{% endblock content %}
