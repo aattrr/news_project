@@ -1,8 +1,9 @@
 {% extends 'djfiles/index.html' %}
 {% load static %}
 {% block content %}
+{% load i18n %}
 <br><br><br>
-<h4 align="center">Редактировать новость</h4>
+<h4 align="center">{% trans 'Edit news' %}</h4>
 {% if request.user.is_authenticated %}
 
     <!--====================  login area ====================-->
@@ -15,19 +16,19 @@
                         <div class="login-form">
                             <div class="row">
                                 <div class="col-md-4 col-4 space__bottom--20">
-                                    <label>Заголовок новости</label>
+                                    <label>{% trans 'Authorization' %}</label>
                                     {{ news_form.title}}
                                 </div>
                                 <div class="col-md-12 col-12 space__bottom--20">
-                                    <label>Описание</label>
+                                    <label>{% trans 'Description' %}</label>
                                     {{ news_form.description }}
                                 </div>
                                 <div class="col-md-12 col-12 space__bottom--20">
-                                    <label>Активен</label>
+                                    <label>{% trans 'is active' %}</label>
                                     {{ news_form.status }}
                                 </div>
                                 <div class="col-12">
-                                    <input type="submit" value="Изменить"></td>
+                                    <button type="submit" class="default-btn" >{% trans 'Edit' %}</button>
                                 </div>
                             </div>
                         </div>
@@ -39,7 +40,10 @@
                             <img src="{{ o.image.url }}"  alt="">
                             <input type="checkbox" name="checks" value="{{ o.id }}">
                         {% endfor %}
-                        <input type="submit" value="Удалить">
+                    <br><br><br>
+                        <div class="col-12">
+                            <button type="submit" class="default-btn" >{% trans 'Delete' %}</button>
+                        </div>
                     </form>
                     {% endif %}
                 </div>
@@ -48,6 +52,6 @@
     </div>
     <!--====================  End of login area  ====================-->
 {% else %}
-    <h6>Вы не авторизованы, авторизуйтесь чтобы изменить новость</h6>
+    <h6>{% trans 'You are not logged in, log in to change the news' %}</h6>
 {% endif %}
 {% endblock content %}

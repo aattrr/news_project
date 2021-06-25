@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <br><br><br><br><br>
-
+{% load i18n %}
     <!--====================  feature area ====================-->
     <div class="feature-area space__bottom--r120">
         <div class="container">
@@ -15,8 +15,8 @@
                                 <img src="{% static 'djfiles/assets/img/icons/feature-2.png' %}" class="img-fluid" alt="">
                             </div>
                             <div class="single-feature__content">
-                                <h4 class="single-feature__title">Последние новости</h4>
-                                <p class="single-feature__text">Наши репортёры работают 24/7, мы следим за всем что меняеться </p>
+                                <h4 class="single-feature__title">{% trans 'Last news' %}</h4>
+                                <p class="single-feature__text">{% trans 'Our reporters work 24/7, we follow everything that changes' %}</p>
                             </div>
                         </div>
                         <div class="single-feature space__bottom--35">
@@ -24,8 +24,8 @@
                                 <img src="{% static 'djfiles/assets/img/icons/feature-1.png' %}" class="img-fluid" alt="">
                             </div>
                             <div class="single-feature__content">
-                                <h4 class="single-feature__title">И только гуща</h4>
-                                <p class="single-feature__text">Мы не публикуем скучные новости, не разбавляем их водой и не приукрашиваем. Всё что Вы увидете всё как есть </p>
+                                <h4 class="single-feature__title">{% trans 'Only essential' %}</h4>
+                                <p class="single-feature__text">{% trans 'We do not publish boring news, do not dilute it with water or embellish it. Everything that you will see everything as it is' %}</p>
                             </div>
                         </div>
                         <div class="single-feature space__bottom--35">
@@ -33,8 +33,8 @@
                                 <img src="{% static 'djfiles/assets/img/icons/feature-3.png' %}" class="img-fluid" alt="">
                             </div>
                             <div class="single-feature__content">
-                                <h4 class="single-feature__title">Со всех уголков мира</h4>
-                                <p class="single-feature__text">1072 стрингера во всём мире рыщут в поисках хорошей новости </p>
+                                <h4 class="single-feature__title">{% trans 'From all over the world' %}</h4>
+                                <p class="single-feature__text">{% trans '1072 stringers around the world are on the prowl for good news' %}</p>
                             </div>
                         </div>
                     </div>

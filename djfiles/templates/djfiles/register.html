@@ -1,7 +1,8 @@
 {% extends 'djfiles/index.html' %}
 {% block content %}
+{% load i18n %}
 <br><br><br>
-    <h4 align="center">Страница Регистрации</h4>
+    <h4 align="center">{% trans 'Registration page' %}</h4>
 
 
 <!--====================  login area ====================-->
@@ -12,38 +13,46 @@
                     <form enctype="multipart/form-data" method="post" action="{% url 'register' %}">
                         {% csrf_token %}
                         <div class="login-form">
-                            <h4 class="login-title">Регистрация</h4>
+                            <h4 class="login-title">{% trans 'Register' %}</h4>
                             <div class="row">
                                 <div class="col-md-6 col-12 space__bottom--20">
+                                    {{ form.username.label }}
                                     {{ form.username }}
                                 </div>
                                 <div class="col-md-6 col-12 space__bottom--20">
+                                    {{ form.email.label }}
+                                    {{ form.email }}
+                                </div>
+                                <div class="col-md-6 col-12 space__bottom--20">
+                                    {{ form.first_name.label }}
                                     {{ form.first_name }}
                                 </div>
                                 <div class="col-md-6 col-12 space__bottom--20">
+                                    {{ form.second_name.label }}
                                     {{ form.second_name }}
                                 </div>
                                 <div class="col-md-6 space__bottom--20">
+                                    {{ form.tel.label }}
                                     {{ form.tel }}
                                 </div>
-                                <div class="col-md-6 space__bottom--20">
-                                    {{ form.town}}
-                                </div>
                                 <div class="col-md-12 space__bottom--20">
-                                    <label>Загрузите Ваше фото</label>
+                                    {{ form.avatar.label }}
                                     {{ form.avatar }}
                                 </div>
                                  <div class="col-md-12 space__bottom--20">
+                                     {{ form.about_me.label }}
                                      {{ form.about_me }}
                                  </div>
                                 <div class="col-md-6 space__bottom--20">
+                                    {{ form.password1.label }}
                                     {{ form.password1 }}
                                 </div>
                                 <div class="col-md-6 space__bottom--20">
+                                    {{ form.password2.label }}
                                     {{ form.password2 }}
                                 </div>
                                 <div class="col-12">
-                                     <input type="submit" value="Отправить"></td>
+                                <button type="submit" class="default-btn" >{% trans 'Send' %}</button>
                                 </div>
                             </div>
                         </div>

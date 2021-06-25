@@ -1,17 +1,18 @@
 {% extends 'djfiles/index.html' %}
 {% load static %}
 {% block content %}
+{% load i18n %}
 <br><br><br>
-<h4 align="center">Добавить комментарий</h4>
+<h4 align="center">{% trans 'Add comment' %}</h4>
 <br><br>
     <form action="" method="post">
         {% csrf_token %}
             <div>
                 {{ form.text.errors }}
-                <label for="text"> Комментарий:</label>
+                <label for="text">{% trans 'Comment' %}</label>
                 {{ form.text }}
             </div>
-        <button type="submit">Опубликовать</button>
+        <button type="submit">{% trans 'Publish' %}</button>
     </form>
 
 {% endblock content %}

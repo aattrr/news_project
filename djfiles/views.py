@@ -1,12 +1,14 @@
 from _csv import reader
 from django.contrib import messages
-from django.http import HttpResponse, request
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic.base import TemplateView
 from django.contrib.auth import authenticate, login
+from django.http import HttpResponse, request
+from django.shortcuts import render, redirect
+from django.views.generic.base import TemplateView
 from django.contrib.auth.views import LoginView, LogoutView
-from app_users.models import Profile, News, User
+from app_users.models import Profile, News, Comment, Promotion
 from .forms import RegisterForm, ChangeUserForm, UploadFileForm
+from django.utils.translation import gettext as _
+from django.core.cache import cache
 
 
 def load_file(request):
@@ -69,8 +71,13 @@ class PersonalInf(TemplateView):
         context = super(PersonalInf, self).get_context_data(**kwargs)
         current_user = self.request.user
         if current_user.is_authenticated:
-            select_user = News.objects.filter(user=current_user)
-            context['count_news'] = select_user.count()
+            promotion_cache_key = 'promotion:{}'.format(current_user)
+            promotion = Promotion.objects.filter(user=current_user)
+            cache.get_or_set(promotion_cache_key, promotion, 30*60)
+
+            context['current_user_comment'] = Comment.objects.filter(user=current_user)
+            context['current_user_news'] = News.objects.filter(user=current_user)
+            context['current_user_promotion'] = Promotion.objects.filter(user=current_user)
         return context
 
 
@@ -79,8 +86,8 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST, request.FILES)
         if form.is_valid():
+            form.cleaned_data.get('email')
             user = form.save()
-            town = form.cleaned_data.get('town')
             tel = form.cleaned_data.get('tel')
             first_name = form.cleaned_data.get('first_name')
             second_name = form.cleaned_data.get('second_name')
@@ -88,7 +95,6 @@ def register(request):
             avatar = form.cleaned_data.get('avatar')
             Profile.objects.create(
                 user=user,
-                town=town,
                 tel=tel,
                 first_name=first_name,
                 second_name=second_name,
@@ -109,15 +115,11 @@ def register(request):
 
 def about(request):
     """Страница О нас"""
-    context = {
-        'about_text': 'Сайт создан в ознакомительных целях для оценки профессиональных способностей'
-    }
-    return render(request, 'djfiles/about.html', context=context)
+    about_text = _('The site was created for informational purposes to assess professional abilities')
+    return render(request, 'djfiles/about.html', context={'about_text': about_text})
 
 
 def contact(request):
     """Страница Контакты"""
-    context = {
-        'contact_text': 'Страница контактов'
-    }
-    return render(request, 'djfiles/contact.html', context=context)
+    contact_text = _('Contact page')
+    return render(request, 'djfiles/contact.html', context={'contact_text': contact_text})

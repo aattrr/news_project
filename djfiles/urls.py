@@ -11,10 +11,12 @@ urlpatterns = [
     path('personal_inf/', views.PersonalInf.as_view(), name='personal_inf'),
     path('edit_profile', edit_profile, name='edit_profile'),
     path('news/', include('app_users.urls')),
+    path('i18n', include('django.conf.urls.i18n')),
     path('login', UserLoginView.as_view(), name='login'),
     path('logout/', UserLogoutView.as_view(), name='logout'),
     path('register/', register, name='register'),
     path('load_file/', load_file, name='load_file'),
+    # path('register', SignUpView.as_view(), name='register'),
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
 ]\

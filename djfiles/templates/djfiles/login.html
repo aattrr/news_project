@@ -1,6 +1,7 @@
 {% extends 'djfiles/index.html' %}
 {% load static %}
 {% block content %}
+{% load i18n %}
 <br><br><br>
 
 <br><br>
@@ -10,18 +11,18 @@
     <form method="post">
          {% csrf_token %}
         <div class="login-form">
-            <h4 class="login-title">Авторизация</h4>
+            <h4 class="login-title">{% trans 'Authorization' %}</h4>
             <div class="row">
                 <div class="col-md-12 col-12 space__bottom--20">
-                    <label>Имя пользователя</label>
+                    <label>{% trans 'Username' %}</label>
                     {{ form.username }}
                 </div>
                 <div class="col-12 space__bottom--20">
-                    <label>Пароль</label>
+                    <label>{% trans 'Password' %}</label>
                     {{ form.password }}
                 </div>
                 <div class="col-md-12">
-                    <button class="default-btn mt-0">Войти</button>
+                    <button class="default-btn mt-0">{% trans 'Login' %}</button>
                 </div>
             </div>
         </div>

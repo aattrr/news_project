@@ -1,9 +1,10 @@
 {% extends 'djfiles/index.html' %}
 {% load static %}
 {% block content %}
+{% load i18n %}
 <br><br><br>
 {% if request.user.is_authenticated %}
-<h4 align="center">Изменить персональные данные</h4>
+<h4 align="center">{% trans 'Edit personal information' %}</h4>
 <br><br>
 
 
@@ -17,31 +18,31 @@
                         <div class="login-form">
                             <div class="row">
                                 <div class="col-md-6 col-12 space__bottom--20">
-                                    <label>Имя пользователя</label>
+                                    <label>{% trans 'Username' %}</label>
                                     {{ form.user}}
                                 </div>
                                 <div class="col-md-6 col-12 space__bottom--20">
-                                    <label>Имя</label>
+                                    <label>{% trans 'First name' %}</label>
                                     {{ form.first_name }}
                                 </div>
                                 <div class="col-md-6 col-12 space__bottom--20">
-                                    <label>Фамилия</label>
+                                    <label>{% trans 'Second name' %}</label>
                                     {{ form.second_name }}
                                 </div>
                                 <div class="col-md-6 space__bottom--20">
-                                    <label>Телефон</label>
+                                    <label>{% trans 'Phone' %}</label>
                                     {{ form.tel }}
                                 </div>
                                 <div class="col-md-6 space__bottom--20">
-                                    <label>Город</label>
+                                    <label>{% trans 'Town' %}</label>
                                     {{ form.town}}
                                 </div>
-                                 <div class="col-md-12 space__bottom--20">
-                                    <label>Обо мне</label>
-                                    {{ form.about_me }}
-                                 </div>
+                                <div class="col-md-12 space__bottom--20">
+                                   <label>{% trans 'About me' %}</label>
+                                   {{ form.about_me }}
+                                </div>
                                 <div class="col-12">
-                                     <input type="submit" value="Изменить"></td>
+                                    <button type="submit" class="default-btn" >{% trans 'Send' %}</button>
                                 </div>
                             </div>
                         </div>
@@ -52,6 +53,6 @@
     </div>
     <!--====================  End of login area  ====================-->
 {% else %}
-    <h6>Вы не авторизованы, авторизуйтесь чтобы посмотреть информацию о пользователе</h6>
+    <h6>{% trans 'You are not logged in, log in to view user information' %}</h6>
 {% endif %}
 {% endblock content %}

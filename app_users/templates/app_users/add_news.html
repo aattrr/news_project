@@ -1,10 +1,10 @@
 {% extends 'djfiles/index.html' %}
 {% load static %}
 {% block content %}
+{% load i18n %}
 <br><br><br>
-<h4 align="center">Добавить новость</h4>
+<h4 align="center">{% trans 'Add news' %}</h4>
 <br><br>
-{% if request.user.is_authenticated %}
     <!--====================  login area ====================-->
     <div class="login-area space__bottom--r120">
         <div class="container">
@@ -15,23 +15,23 @@
                         <div class="login-form">
                             <div class="row">
                                 <div class="col-md-12 col-12 space__bottom--20">
-                                    <label>Заголовок новости</label>
+                                    <label>{% trans 'Title News' %}</label>
                                     {{ news_form.title}}
                                 </div>
                                 <div class="col-md-12 col-12 space__bottom--20">
-                                    <label>Описание</label>
+                                    <label>{% trans 'Description' %}</label>
                                     {{ news_form.description }}
                                 </div>
                                 <div class="col-md-6 space__bottom--20">
-                                    <label>Активен</label>
+                                    <label>{% trans 'is active' %}</label>
                                     {{ news_form.status }}
                                 </div>
                                 <div class="col-md-6 space__bottom--20">
-                                    <label>Изображения</label>
+                                    <label>{% trans 'Image' %}</label>
                                     {{ picture_form.image}}
                                 </div>
                                 <div class="col-12">
-                                     <input type="submit" value="Добавить">
+                                    <button type="submit" class="default-btn" >{% trans 'Add news' %}</button>
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,4 @@
         </div>
     </div>
     <!--====================  End of login area  ====================-->
-{% else %}
-    <h6>Вы не авторизованы, авторизуйтесь чтобы добавить новость</h6>
-{% endif %}
 {% endblock content %}

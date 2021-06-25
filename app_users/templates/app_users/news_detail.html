@@ -1,9 +1,10 @@
 {% extends 'djfiles/index.html' %}
 {% load static %}
 {% block content %}
+{% load i18n %}
 <br><br><br>
-<h4 align="center">Описание новости</h4>
-<br><br>
+<h4 align="center">{{ object.title}}</h4>
+<br>
     <!--====================  service details ====================-->
     <div class="service-section space__bottom--r120">
         <div class="container">
@@ -24,14 +25,14 @@
                         <div class="content space__top--30">
                             <div class="row">
                                 <div class="col-12">
-                                    <h3 class="space__bottom--15">{{ object.title }}</h3>
+{#                                    <h3 class="space__bottom--15">{{ object.title }}</h3>#}
                                     <p>{{ object.description }}</p>
                                     <p align="right">
-                                        <a href="{% url  'edit_news' object.id %}" class="default-btn"> Редактировать </a>
+                                        <a href="{% url  'edit_news' object.id %}" class="default-btn">{% trans 'Edit' %}</a>
                                     </p>
-                                    <i>Опубликовал: {{ object.user }}</i><br>
-                                    <i>Дата создания: {{ object.create_at}}</i><br>
-                                    <i>Теги:
+                                    <i>{% trans 'Published' %}:  {{ object.user }}</i><br>
+                                    <i>{% trans 'Date created' %}:  {{ object.create_at}}</i><br>
+                                    <i>{% trans 'Tags' %}:
                                         <i>
                                             {% for tag in object.metatag.all %}
                                                 {{ tag.descriptor }}
@@ -50,7 +51,7 @@
                                                 </div>
                                             </div>
                                             <i> {{ i.text }} </i>
-                                            <h5 align="right" class="single-testimonial__author">Анонимный пользователь</h5>
+                                            <h5 align="right" class="single-testimonial__author">{% trans 'Anonymous user' %}</h5>
                                         {% else %}
                                             <div class="single-testimonial text-center">
                                                 <div class="single-testimonial__rating space__bottom--10">
@@ -65,8 +66,8 @@
                                     {% endfor %}
 
                                     <hr>
-                                    <a href="{% url 'add_comment' object.id %}" class="default-btn">Добавить комментарий</a>
-                                    <a href="/news" class="default-btn" >Назад</a>
+                                    <a href="{% url 'add_comment' object.id %}" class="default-btn">{% trans 'Add comment' %}</a>
+                                    <a href="{% url 'news_list' %}" class="default-btn">{% trans 'Back' %}</a>
                                 </div>
                             </div>
 

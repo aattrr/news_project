@@ -1,8 +1,9 @@
 {% extends 'djfiles/index.html' %}
 {% load static %}
 {% block content %}
+{% load i18n %}
 <br><br><br><br>
-<h4 align="center">Список новостей</h4>
+<h4 align="center">{% trans 'News list' %}</h4>
 <div class="service-section space__bottom--r120">
         <div class="container">
             <div class="row">
@@ -15,13 +16,13 @@
                                         <a href="{{ i.get_absolute_url }}">{{ i.title }}</a>
                                     </h3>
                                     <p class="subtitle">{{ i.description|truncatewords:100 }}</p>
-                                    <a href="{{ i.get_absolute_url }}" class="see-more-link">Читать далее...</a>
+                                    <a href="{{ i.get_absolute_url }}" class="see-more-link">{% trans 'Read more ...' %}</a>
                                     <i><p align="right" > {{ i.user }} </p></i>
                                     <hr>
                                 {% empty %}
-                                    <h3> В данный момент новости отсутсвуют </h3>
+                                    <h3>{% trans 'There is no news at the moment' %}</h3>
                                 {% endfor %}
-                                <a href="{% url "add_news" %}" class="default-btn">Добавить новость</a>
+                                <a href="{% url "add_news" %}" class="default-btn">{% trans 'Add news' %}</a>
                             </div>
                         </div>
                     </div>

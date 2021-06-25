@@ -1,7 +1,6 @@
-from _csv import reader
 from django.test import TestCase
 from django.urls import reverse
-from app_users.models import News, Profile, Picture
+from app_users.models import News, Profile, Picture, Comment, Promotion
 from django.contrib.auth.models import User, Permission
 from django.core.files.uploadedfile import SimpleUploadedFile
 
@@ -120,7 +119,7 @@ class LoginPageTest(TestCase):
 class EditNewsPageTest(TestCase):
     ''' Тестируем страницу изменения новости '''
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(self):
     # Создаем и заполняем базу для тестирования
         user_for_test = User.objects.create_user(username='testuser', email='fifa@fa.ru', password='testqqqq')
         for word in WORD_OF_ITEMS:
@@ -171,9 +170,10 @@ class DeletePicturePageTest(TestCase):
             'pk': id_news,
             'checks': id_picture
         }
-        response = self.client.post(reverse('delete_picture'), data={'checks': id_picture}, kwargs={'pk': id_news})
+        response = self.client.post(reverse('delete_picture', args=[id_news]), data={'checks': [id_picture,]}, )
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Picture.objects.count(), 0)
 
-        self.assertEqual(response.status_code, 200)
 
 
 class RegisterPageTest(TestCase):
@@ -199,7 +199,9 @@ class LoadFilesPageTest(TestCase):
 
         # В load_file должен появиться информационный текст
         response_get_load_file = self.client.get(reverse('load_file'))
-        self.assertContains(response_get_load_file, 'Чтобы загрузить новости необходимо использовать .csv файл')
+        self.assertContains(response_get_load_file, 'To download news, you need to use a .csv file, in which two fields'
+                                                    ' are separated by commas, for example')
+        # self.assertContains(response_get_load_file, 'Чтобы загрузить новости необходимо использовать .csv файл')
 
         f = SimpleUploadedFile(name='news.csv', content=open('image/image/news.csv', 'rb').read(),
                                content_type='text/csv')
@@ -217,19 +219,47 @@ class PersonalInfPageTest(TestCase):
     def setUpTestData(cls):
         # Создаем пользователя testuser3 без прав
         test_user3 = User.objects.create_user(username='testuser3', password='testqqqq')
-        test_user3.save()
+
+        for word in WORD_OF_ITEMS:
+            News.objects.create(
+                user=test_user3,
+                title=word,
+                description='The time of sunset is defined in astronomy as the moment when the upper limb of',
+                status=True
+            )
+        several_words = News.objects.filter(user=test_user3)
+        for word in several_words:
+            Comment.objects.create(
+                user=test_user3,
+                text='hi, good publish thanks',
+                news=word
+            )
+        Promotion.objects.create(
+            user=test_user3,
+            offer='WE Offer for you : {}'.format(WORD_OF_ITEMS[0]),
+            promotion='Good promotion for you : {}'.format(WORD_OF_ITEMS[5])
+        )
 
     def test_personal_inf_page_for_anonym_user(self):
         # Тестируем доступ к странице пользовательской информации для НЕавторизованного пользователя
         response = self.client.get(reverse('personal_inf'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Вы не авторизованы, авторизуйтесь чтобы посмотреть информацию о пользователе')
+        self.assertContains(response, 'You are not logged in, log in to view user information')
+        # self.assertContains(response, 'Вы не авторизованы, авторизуйтесь чтобы посмотреть информацию о пользователе')
 
     def test_personal_inf_page_for_authorize_user(self):
         # Тестируем доступ к странице пользовательской информации для авторизованного пользователя
         login = self.client.login(username='testuser3', password='testqqqq')
         response = self.client.get(reverse('personal_inf'))
         self.assertEqual(response.status_code, 200)
+
+    def test_items_in_template(self):
+        ''' Тестируем наличие новостей, комментариев, акций и предложений опубликованных пользователем '''
+        self.client.login(username='testuser3', password='testqqqq')
+        response = self.client.get(reverse('personal_inf'))
+        self.assertTrue(len(response.context['current_user_news']) == len(WORD_OF_ITEMS))
+        self.assertTrue(len(response.context['current_user_comment']) == len(WORD_OF_ITEMS))
+        self.assertTrue(len(response.context['current_user_promotion']) == 1)
 
 
 class EditProfilePageTest(TestCase):
@@ -254,7 +284,8 @@ class EditProfilePageTest(TestCase):
         # Тестируем возможность редактрования пользовательских данных НЕавторизованным пользователем
         response = self.client.get(reverse('edit_profile'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Вы не авторизованы, авторизуйтесь чтобы посмотреть информацию о пользователе')
+        self.assertContains(response, 'You are not logged in, log in to view user information')
+        # self.assertContains(response, 'Вы не авторизованы, авторизуйтесь чтобы посмотреть информацию о пользователе')
 
 
 class MainPageTest(TestCase):

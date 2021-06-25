@@ -1,29 +1,73 @@
 {% extends 'djfiles/index.html' %}
 {% load static %}
 {% block content %}
+{% load i18n %}
 
 <br><br><br>
 {% if request.user.is_authenticated %}
-    <h4 align="center">Персональная информация: {{ request.user.username.upper }}</h4>
-    <br><br>
-        <img src="{{ request.user.profile.avatar.url }}" alt=""></li><br><br>
-
+    <h4 align="center">{% trans 'Personal information for' %}: {{ request.user.username.upper }}</h4> <br><br>
+    {% if request.user.profile.avatar %}
+         <img src="{{ request.user.profile.avatar.url }}" alt=""><br><br>
+    {% endif %}
         <ul>
-            <li class="list-group-item list-group-item-action list-group-item-warning">Пользователь: <b>{{ request.user.username }}</b></li>
-            <li class="list-group-item list-group-item-action list-group-item-info">Имя: <b>{{ request.user.profile.first_name }}</b></li>
-            <li class="list-group-item list-group-item-action list-group-item-warning">Фамилия: <b>{{ request.user.profile.second_name }}</b></li>
-            <li class="list-group-item list-group-item-action list-group-item-info">Обо мне: <b>{{ request.user.profile.about_me }}</b></li>
-            <li class="list-group-item list-group-item-action list-group-item-warning">Город: <b>{{ request.user.profile.town }}</b></li>
-            <li class="list-group-item list-group-item-action list-group-item-info">Телефон: <b>{{ request.user.profile.tel }}</b></li>
-            <li class="list-group-item list-group-item-action list-group-item-warning">Колличество опубликованных новостей: <b>{{ count_news }}</b></li>
-        </ul>
-        <br>
-        <p align="right">
-        <a href="{% url 'edit_profile' %}"  align="right" class="default-btn" >Редактировать профиль</a>
-        </p>
-{% else %}
-    <h6>Вы не авторизованы, авторизуйтесь чтобы посмотреть информацию о пользователе</h6>
-{% endif %}
-    <br><br><br><br><br><br>
+            <li class="list-group-item list-group-item-action list-group-item-warning">{% trans 'Username' %}:  <b>{{ request.user.username }}</b></li>
+            <li class="list-group-item list-group-item-action list-group-item-info">{% trans 'First name' %}:  <b>{{ request.user.profile.first_name }}</b></li>
+            <li class="list-group-item list-group-item-action list-group-item-warning">{% trans 'Second name' %}:  <b>{{ request.user.profile.second_name }}</b></li>
+            <li class="list-group-item list-group-item-action list-group-item-info">{% trans 'About me' %}:  <b>{{ request.user.profile.about_me }}</b></li>
+            <li class="list-group-item list-group-item-action list-group-item-warning">{% trans 'Phone number' %}:  <b>{{ request.user.profile.tel }}</b></li>
+            <li class="list-group-item list-group-item-action list-group-item-info">{% trans 'Email' %}:  <b>{{ request.user.email }}</b></li>
+        </ul><br>
+        <p align="right"> <a href="{% url 'edit_profile' %}"  align="right" class="default-btn" >{% trans 'Edit profile' %}</a></p>
 
+        <h5 align="center">{% trans 'Balance' %}</h5><hr>
+        <p>14,60 руб.</p>
+
+        <h5 align="center">{% trans 'Promotions' %}</h5><hr>
+        {% for item in current_user_promotion %}
+            <p>{{ item.promotion }}<p>
+        {% empty %}
+            <h5>{% trans 'There is no promotion at the moment' %}</h5>
+        {% endfor %}
+
+        <h5 align="center">{% trans 'Offers' %}</h5><hr>
+        {% for item in current_user_promotion %}
+            <p>{{ item.offer }}<p>
+        {% empty %}
+            <h5>{% trans 'There is no offer at the moment' %}</h5>
+        {% endfor %}<br><br>
+
+        {% load cache %}
+        {% cache 500 my_data %}
+        {% block my_data %}
+
+        <h5 align="center">{% trans 'My comments' %}({{ current_user_comment.count }})  </h5>
+            {% for item in current_user_comment %}
+                <table width="100%">
+                    <tr><td>{{ item.text|truncatewords:65 }}</td><td width="5%">{{forloop.counter}}</td></tr><hr>
+                    <tr><td>
+                        <a href="{{ item.news.get_absolute_url }}" class="see-more-link">{{ item.news.title|truncatewords:65 }}</a>
+                        </td></tr>
+                </table>
+            {% empty %}
+                <h5>{% trans 'There is no comment at the moment' %}</h5>
+            {% endfor %}<br><br>
+
+        <h5 align="center">{% trans 'My news' %}({{ current_user_news.count }}) </h5>
+            {% for item in current_user_news %}
+                <table width="100%">
+                    <tr><td><b>{{ item.title|truncatewords:65 }}</b></td><td width="5%">{{forloop.counter}}</td></tr><hr>
+                    <tr><td>{{ item.description|truncatewords:65 }} &nbsp &nbsp
+                        <a href="{{ item.get_absolute_url }}" class="see-more-link">{% trans 'more ...' %}</a> </td></tr>
+                    <tr><td><i>{% trans 'Published' %}: {{ item.status }}</i><br></td></tr>
+                </table>
+            {% empty %}
+                <h5>{% trans 'There is no news at the moment' %}</h5>
+            {% endfor %}
+
+        {% endblock %}
+        {% endcache %}
+
+{% else %}
+    <h5>{% trans 'You are not logged in, log in to view user information' %}</h5>
+{% endif %}
 {% endblock content %}

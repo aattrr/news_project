@@ -1,22 +1,25 @@
 {% extends 'djfiles/index.html' %}
 {% load static %}
 {% block content %}
+{% load i18n %}
 <br><br><br>
-<h4 align="center">Импорт данных</h4>
+<h4 align="center">{% trans 'Data import' %}</h4>
 <br><br>
 {% if request.user.is_authenticated %}
-    <p>Чтобы загрузить новости необходимо использовать .csv файл, в котором два поля разделённых запятыми, например:</p>
-    <i>Заголовок новости, Текст новости который лучше писать без запятых либо экранировать их</i>
+    <p>{% trans 'To download news, you need to use a .csv file, in which two fields are separated by commas, for example:' %}</p>
+    <i>{% trans 'News title, The text of the news, which is better to write without commas or escape them' %}</i>
     <br><br><br>
     <form enctype="multipart/form-data" method="post" action="{% url 'load_file' %}" align="center">
         {% csrf_token %}
         {{ form.as_p }}
         <br>
-        <input type="submit" value="Загрузить">
+        <div class="col-12">
+            <button type="submit" class="default-btn" >{% trans 'Upload' %}</button>
+        </div>
     </form>
     <br><br><br>
 {% else %}
-    <h6>Вы не авторизованы, авторизуйтесь чтобы иметь возможность загрузки файлов</h6>
+    <h6>{% trans 'You are not logged in, log in to be able to download files' %}</h6>
 {% endif %}
 
 {% endblock content %}

@@ -44,30 +44,29 @@ class NewsDetail(DetailView):
 
 
 def create_news(request):
-    # if not request.user.has_perm('app_users.add_news'):     # имеет ли пользователь, разрешение на создание новости
-    #     raise PermissionDenied()
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            picture_form = PictureForm(request.POST, request.FILES)
-            news_form = NewsForm(request.POST)
-            if picture_form.is_valid() and news_form.is_valid():
-                news_f = news_form.save(commit=False)
-                news_f.user = request.user      # Сохраняем текущего пользователя
-                news_f.save()
-                news_id = news_f.id     # Получаем id вновь созданной новости
-                news = News.objects.get(id=news_id)
-                files = request.FILES.getlist('image')  # Получаем все загруженные файлы
-                for f in files:
-                    instance = Picture(news=news, image=f)
-                    instance.save()
-                return redirect('news_detail', news_id)
-        else:
-            context = {
-                'news_form': NewsForm(),
-                'picture_form': PictureForm(),
-            }
-            return render(request, 'app_users/add_news.html', context)
-    return render(request, 'app_users/add_news.html')
+    if not request.user.has_perm('app_users.add_news'):     # имеет ли пользователь, разрешение на создание новости
+        raise PermissionDenied()
+    if request.method == 'POST':
+        picture_form = PictureForm(request.POST, request.FILES)
+        news_form = NewsForm(request.POST)
+        if picture_form.is_valid() and news_form.is_valid():
+            news_f = news_form.save(commit=False)
+            news_f.user = request.user      # Сохраняем текущего пользователя
+            news_f.save()
+            news_id = news_f.id     # Получаем id вновь созданной новости
+            news = News.objects.get(id=news_id)
+            files = request.FILES.getlist('image')  # Получаем все загруженные файлы
+            for f in files:
+                instance = Picture(news=news, image=f)
+                instance.save()
+            return redirect('news_detail', news_id)
+    else:
+        context = {
+            'news_form': NewsForm(),
+            'picture_form': PictureForm(),
+        }
+    return render(request, 'app_users/add_news.html', context)
+
 
 def edit_news(request, pk):
     """Редактирование Новости"""
@@ -97,7 +96,9 @@ def delete_picture(request, pk):
             for pic in picture_form:
                 select_picture = Picture.objects.get(id=pic)
                 select_picture.delete()
+                # return HttpResponse(content='Изображение удалены', status=200)
             return redirect('edit_news', pk)
+                # return render(request, 'app_users/edit_news.html')
         else:
             return redirect('edit_news', pk)
 

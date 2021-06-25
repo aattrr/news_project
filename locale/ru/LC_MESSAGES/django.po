@@ -1,0 +1,488 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-18 17:46+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: app_users/admin.py:32
+msgid "activate"
+msgstr "активировать"
+
+#: app_users/admin.py:36
+msgid "deactivate"
+msgstr "деактивировать"
+
+#: app_users/admin.py:46
+msgid "Deleted by administrator"
+msgstr "Удалено администратором"
+
+#: app_users/admin.py:48
+msgid "mark for deletion"
+msgstr "отметить на удаление"
+
+#: app_users/apps.py:7 app_users/models.py:31 app_users/models.py:43
+#: app_users/models.py:57
+msgid "news"
+msgstr "Новости"
+
+#: app_users/models.py:21 app_users/models.py:54
+msgid "user"
+msgstr "пользователь"
+
+#: app_users/models.py:24
+msgid "title"
+msgstr "заголовок"
+
+#: app_users/models.py:25
+msgid "description"
+msgstr "Описание"
+
+#: app_users/models.py:26
+msgid "date created"
+msgstr "Дата создания"
+
+#: app_users/models.py:27
+msgid "date update"
+msgstr "Дата редактирования"
+
+#: app_users/models.py:28 app_users/templates/app_users/add_news.html:26
+#: app_users/templates/app_users/edit_news.html:27
+msgid "is active"
+msgstr "активна"
+
+#: app_users/models.py:32
+msgid "new"
+msgstr "Новости"
+
+#: app_users/models.py:44
+msgid "image"
+msgstr "Изображения"
+
+#: app_users/models.py:47
+msgid "pictures"
+msgstr "изображения"
+
+#: app_users/models.py:48
+msgid "picture"
+msgstr "изображение"
+
+#: app_users/models.py:56
+msgid "comment text"
+msgstr "Комментарий"
+
+#: app_users/models.py:60
+msgid "comments"
+msgstr "комментарии"
+
+#: app_users/models.py:61
+msgid "comment"
+msgstr "комментарий"
+
+#: app_users/models.py:71
+msgid "first name"
+msgstr "имя"
+
+#: app_users/models.py:72
+msgid "second name"
+msgstr "фамилия"
+
+#: app_users/models.py:73
+msgid "about me"
+msgstr "обо мне"
+
+#: app_users/models.py:74
+msgid "avatar"
+msgstr "Фотография"
+
+#: app_users/models.py:75
+msgid "phone"
+msgstr "телефон"
+
+#: app_users/models.py:76
+msgid "verify"
+msgstr "верифицирован"
+
+#: app_users/models.py:79
+msgid "profiles"
+msgstr "Редактировать профиль"
+
+#: app_users/models.py:80
+msgid "profile"
+msgstr "Редактировать профиль"
+
+#: app_users/models.py:86
+msgid "offer"
+msgstr "предложение"
+
+#: app_users/models.py:87
+msgid "promotion"
+msgstr "акции"
+
+#: app_users/templates/app_users/add_comment.html:6
+#: app_users/templates/app_users/news_detail.html:69
+msgid "Add comment"
+msgstr "Добавить комментарий"
+
+#: app_users/templates/app_users/add_comment.html:12
+msgid "Comment"
+msgstr "Комментарий"
+
+#: app_users/templates/app_users/add_comment.html:15
+msgid "Publish"
+msgstr "Опубликовать"
+
+#: app_users/templates/app_users/add_news.html:6
+#: app_users/templates/app_users/add_news.html:34
+#: app_users/templates/app_users/filter_news.html:26
+#: app_users/templates/app_users/news_list.html:25
+msgid "Add news"
+msgstr "Добавить новость"
+
+#: app_users/templates/app_users/add_news.html:18
+msgid "Title News"
+msgstr "Заголовок"
+
+#: app_users/templates/app_users/add_news.html:22
+#: app_users/templates/app_users/edit_news.html:23
+msgid "Description"
+msgstr "Описание"
+
+#: app_users/templates/app_users/add_news.html:30
+msgid "Image"
+msgstr "Изображения"
+
+#: app_users/templates/app_users/edit_news.html:6
+msgid "Edit news"
+msgstr "Изменить новость"
+
+#: app_users/templates/app_users/edit_news.html:19
+#: djfiles/templates/djfiles/login.html:14
+msgid "Authorization"
+msgstr "Вход"
+
+#: app_users/templates/app_users/edit_news.html:31
+#: app_users/templates/app_users/news_detail.html:31
+msgid "Edit"
+msgstr "Изменить"
+
+#: app_users/templates/app_users/edit_news.html:45
+msgid "Delete"
+msgstr "Удалить"
+
+#: app_users/templates/app_users/edit_news.html:55
+msgid "You are not logged in, log in to change the news"
+msgstr "Вы не авторизованы, авторизуйтесь чтобы изменять новости"
+
+#: app_users/templates/app_users/filter_news.html:6
+#: djfiles/templates/djfiles/index.html:7
+#: djfiles/templates/djfiles/index.html:111
+msgid "News"
+msgstr "Новости"
+
+#: app_users/templates/app_users/filter_news.html:10
+msgid "All news with tag -"
+msgstr "Все новости с тегом - "
+
+#: app_users/templates/app_users/filter_news.html:23
+#: app_users/templates/app_users/news_list.html:23
+#: djfiles/templates/djfiles/personal_inf.html:64
+msgid "There is no news at the moment"
+msgstr "В данный момент новости отсутсвуют"
+
+#: app_users/templates/app_users/news_detail.html:33
+#: djfiles/templates/djfiles/personal_inf.html:61
+msgid "Published"
+msgstr "Опубликовано"
+
+#: app_users/templates/app_users/news_detail.html:34
+msgid "Date created"
+msgstr "Дата создания"
+
+#: app_users/templates/app_users/news_detail.html:35
+msgid "Tags"
+msgstr "Теги"
+
+#: app_users/templates/app_users/news_detail.html:54
+msgid "Anonymous user"
+msgstr "Анонимный пользователь"
+
+#: app_users/templates/app_users/news_detail.html:70
+msgid "Back"
+msgstr "Назад"
+
+#: app_users/templates/app_users/news_list.html:6
+msgid "News list"
+msgstr "Новости"
+
+#: app_users/templates/app_users/news_list.html:19
+msgid "Read more ..."
+msgstr "Читать далее..."
+
+#: djfiles/forms.py:11 djfiles/templates/djfiles/edit_profile.html:33
+msgid "Phone"
+msgstr "Телефон"
+
+#: djfiles/forms.py:13 djfiles/templates/djfiles/edit_profile.html:25
+#: djfiles/templates/djfiles/personal_inf.html:14
+msgid "First name"
+msgstr "Имя"
+
+#: djfiles/forms.py:15 djfiles/templates/djfiles/edit_profile.html:29
+#: djfiles/templates/djfiles/personal_inf.html:15
+msgid "Second name"
+msgstr "Фамилия"
+
+#: djfiles/forms.py:17 djfiles/templates/djfiles/edit_profile.html:41
+#: djfiles/templates/djfiles/personal_inf.html:16
+msgid "About me"
+msgstr "Обо мне"
+
+#: djfiles/forms.py:19
+msgid "Avatar"
+msgstr "Фотография"
+
+#: djfiles/forms.py:21 djfiles/templates/djfiles/login.html:21
+msgid "Password"
+msgstr "Пароль"
+
+#: djfiles/forms.py:23
+msgid "Confirm password"
+msgstr "Подтверждение пароля"
+
+#: djfiles/forms.py:25 djfiles/templates/djfiles/edit_profile.html:21
+#: djfiles/templates/djfiles/login.html:17
+#: djfiles/templates/djfiles/personal_inf.html:13
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: djfiles/forms.py:27 djfiles/templates/djfiles/personal_inf.html:18
+msgid "Email"
+msgstr "Email"
+
+#: djfiles/templates/djfiles/edit_profile.html:7
+msgid "Edit personal information"
+msgstr "Изменить персональную информацию"
+
+#: djfiles/templates/djfiles/edit_profile.html:37
+msgid "Town"
+msgstr "Город"
+
+#: djfiles/templates/djfiles/edit_profile.html:45
+#: djfiles/templates/djfiles/register.html:55
+msgid "Send"
+msgstr "Отправить"
+
+#: djfiles/templates/djfiles/edit_profile.html:56
+#: djfiles/templates/djfiles/personal_inf.html:71
+msgid "You are not logged in, log in to view user information"
+msgstr ""
+"Вы не авторизованы, авторизуйтесь чтобы посмотреть информацию о пользователе"
+
+#: djfiles/templates/djfiles/index.html:66
+msgid "Go"
+msgstr "Перейти"
+
+#: djfiles/templates/djfiles/index.html:75
+#: djfiles/templates/djfiles/logout.html:5
+msgid "Logout"
+msgstr "Выйти"
+
+#: djfiles/templates/djfiles/index.html:81
+#: djfiles/templates/djfiles/login.html:25
+#: djfiles/templates/djfiles/logout.html:12
+msgid "Login"
+msgstr "Войти"
+
+#: djfiles/templates/djfiles/index.html:81
+#: djfiles/templates/djfiles/register.html:16
+msgid "Register"
+msgstr "Регистрация"
+
+#: djfiles/templates/djfiles/index.html:109
+msgid "Home"
+msgstr "Главная"
+
+#: djfiles/templates/djfiles/index.html:110
+msgid "About us"
+msgstr "О нас"
+
+#: djfiles/templates/djfiles/index.html:112
+msgid "Contact"
+msgstr "Контакты"
+
+#: djfiles/templates/djfiles/index.html:113
+msgid "Admin"
+msgstr "Админка"
+
+#: djfiles/templates/djfiles/index.html:115
+msgid "Personal information"
+msgstr "Персональная информация"
+
+#: djfiles/templates/djfiles/index.html:116
+msgid "Upload data"
+msgstr "Загрузка данных"
+
+#: djfiles/templates/djfiles/index.html:150
+msgid "Subscribe to the newsletter"
+msgstr "Подпишитесь на рассылку"
+
+#: djfiles/templates/djfiles/index.html:155
+msgid "Stay Informed"
+msgstr "Будь в курсе событий"
+
+#: djfiles/templates/djfiles/index.html:156
+msgid "Subscribe"
+msgstr "Подписаться"
+
+#: djfiles/templates/djfiles/index.html:180
+msgid "News - 2021"
+msgstr "Новости - 2021"
+
+#: djfiles/templates/djfiles/logout.html:9
+msgid "Logout page"
+msgstr "Страница выхода"
+
+#: djfiles/templates/djfiles/main.html:18
+msgid "Last news"
+msgstr "Последние новости"
+
+#: djfiles/templates/djfiles/main.html:19
+msgid "Our reporters work 24/7, we follow everything that changes"
+msgstr "Наши репортёры работают 24/7, мы следим за всем что меняеться"
+
+#: djfiles/templates/djfiles/main.html:27
+msgid "Only essential"
+msgstr "И только гуща"
+
+#: djfiles/templates/djfiles/main.html:28
+msgid ""
+"We do not publish boring news, do not dilute it with water or embellish it. "
+"Everything that you will see everything as it is"
+msgstr ""
+"Мы не публикуем скучные новости, не разбавляем их водой и не приукрашиваем. "
+"Всё что Вы увидете всё как есть"
+
+#: djfiles/templates/djfiles/main.html:36
+msgid "From all over the world"
+msgstr "Со всех уголков мира"
+
+#: djfiles/templates/djfiles/main.html:37
+msgid "1072 stringers around the world are on the prowl for good news"
+msgstr "1072 стрингера во всём мире рыщут в поисках хорошей новости"
+
+#: djfiles/templates/djfiles/personal_inf.html:8
+msgid "Personal information for"
+msgstr "Персональная информация"
+
+#: djfiles/templates/djfiles/personal_inf.html:17
+msgid "Phone number"
+msgstr "Телефон"
+
+#: djfiles/templates/djfiles/personal_inf.html:20
+msgid "Edit profile"
+msgstr "Редактировать профиль"
+
+#: djfiles/templates/djfiles/personal_inf.html:22
+msgid "Balance"
+msgstr "Баланс"
+
+#: djfiles/templates/djfiles/personal_inf.html:25
+#| msgid "promotion"
+msgid "Promotions"
+msgstr "Акции"
+
+#: djfiles/templates/djfiles/personal_inf.html:29
+#| msgid "There is no news at the moment"
+msgid "There is no promotion at the moment"
+msgstr "В данный момент акции отсутсвуют"
+
+#: djfiles/templates/djfiles/personal_inf.html:32
+#| msgid "offer"
+msgid "Offers"
+msgstr "Предложения"
+
+#: djfiles/templates/djfiles/personal_inf.html:36
+#| msgid "There is no news at the moment"
+msgid "There is no offer at the moment"
+msgstr "В данный момент пердложения отсутсвуют"
+
+#: djfiles/templates/djfiles/personal_inf.html:43
+#| msgid "comments"
+msgid "My comments"
+msgstr "Мои комментарии"
+
+#: djfiles/templates/djfiles/personal_inf.html:52
+#| msgid "There is no news at the moment"
+msgid "There is no comment at the moment"
+msgstr "В данный момент комментарии отсутсвуют"
+
+#: djfiles/templates/djfiles/personal_inf.html:55
+#| msgid "news"
+msgid "My news"
+msgstr "Мои Новости"
+
+#: djfiles/templates/djfiles/personal_inf.html:60
+#| msgid "Read more ..."
+msgid "more ..."
+msgstr "подробнее..."
+
+#: djfiles/templates/djfiles/register.html:5
+msgid "Registration page"
+msgstr "Страница регистрации"
+
+#: djfiles/templates/djfiles/upload_file.html:6
+msgid "Data import"
+msgstr "Загрузка данных"
+
+#: djfiles/templates/djfiles/upload_file.html:9
+msgid ""
+"To download news, you need to use a .csv file, in which two fields are "
+"separated by commas, for example:"
+msgstr ""
+"Чтобы загрузить новости необходимо использовать .csv файл, в котором два "
+"поля разделённых запятыми, например:"
+
+#: djfiles/templates/djfiles/upload_file.html:10
+msgid ""
+"News title, The text of the news, which is better to write without commas or "
+"escape them"
+msgstr ""
+"Заголовок новости, Текст новости который лучше писать без запятых либо "
+"экранировать их"
+
+#: djfiles/templates/djfiles/upload_file.html:17
+msgid "Upload"
+msgstr "Загрузка"
+
+#: djfiles/templates/djfiles/upload_file.html:22
+msgid "You are not logged in, log in to be able to download files"
+msgstr ""
+"Вы не авторизованы, авторизуйтесь чтобы посмотреть информацию о пользователе"
+
+#: djfiles/views.py:118
+msgid ""
+"The site was created for informational purposes to assess professional "
+"abilities"
+msgstr ""
+"Сайт создан в ознакомительных целях для оценки профессиональных способностей"
+
+#: djfiles/views.py:124
+msgid "Contact page"
+msgstr "Страница контактов"
+

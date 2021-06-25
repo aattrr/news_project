@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
-from django.contrib.auth.admin import UserAdmin
-from .models import News, Comment, Profile, Picture
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from .models import News, Comment, Profile, Picture, Promotion
+from django.utils.translation import gettext_lazy as _
 
 
 # @admin.register(Metatag)
@@ -15,6 +16,7 @@ class CommentInLine(admin.TabularInline):
 
 class PictureInLine(admin.StackedInline):
     model = Picture
+    # fields = (_('news'), _('image'))
 
 
 @admin.register(News)
@@ -27,11 +29,11 @@ class NewsAdmin(admin.ModelAdmin):
 
     def activate(self, request, queryset):
         queryset.update(status=True)
-    activate.short_description = "Активировать"
+    activate.short_description = _("activate")
 
     def deactivate(self, request, queryset):
         queryset.update(status=False)
-    deactivate.short_description = "Дективировать"
+    deactivate.short_description = _("deactivate")
 
 
 @admin.register(Comment)
@@ -41,14 +43,19 @@ class CommentAdmin(admin.ModelAdmin):
     actions = ['mark_delete']
 
     def mark_delete(self, request, queryset):
-        queryset.update(text='Удаленно администратором')
+        queryset.update(text=_('Deleted by administrator'))
 
-    mark_delete.short_description = "пометить на удаление"
+    mark_delete.short_description = _("mark for deletion")
 
 
 @admin.register(Picture)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['news', 'image']
+
+
+@admin.register(Promotion)
+class PromotionAdmin(admin.ModelAdmin):
+    list_display = ['user', 'offer', 'promotion']
 
 
 class ProfileInline(admin.StackedInline):
@@ -57,7 +64,7 @@ class ProfileInline(admin.StackedInline):
     verbose_name_plural = 'profile'
 
 
-class UserAdmin(UserAdmin):
+class UserAdmin(BaseUserAdmin):
     inlines = [ProfileInline]
 
 

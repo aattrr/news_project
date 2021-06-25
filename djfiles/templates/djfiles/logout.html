@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Выход</title>
+    <title>{% trans 'Logout' %}</title>
 </head>
 <body>
 <h2>{{ msg_error }}</h2>
-<h2>Страница выхода</h2>
+<h2>{% trans 'Logout page' %}</h2>
     <form method="post">
         {{ form.as_p }}
-        <button type="submit"> Войти </button>
+        <button type="submit"> {% trans 'Login' %} </button>
     </form>
 </body>
 </html>
